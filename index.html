@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,13 +11,15 @@
 <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
 <h1>🎙 Sistema Demo Radio</h1>
 
 <div class="contenedor">
 
-<!-- REGISTRO -->
+
+<!-- REGISTRAR TEXTO -->
 <div class="panel">
 
 <h2>Registrar Texto</h2>
@@ -28,14 +31,28 @@
 </div>
 
 
-<!-- LISTA -->
+
+<!-- REGISTROS GUARDADOS -->
 <div class="panel">
 
 <h2>Lista de Registros</h2>
 
-<ul id="listaRegistros"></ul>
+<table>
+
+<thead>
+<tr>
+<th>Texto</th>
+<th>Acciones</th>
+</tr>
+</thead>
+
+<tbody id="listaRegistros">
+</tbody>
+
+</table>
 
 </div>
+
 
 
 <!-- PROGRAMACION -->
@@ -43,15 +60,35 @@
 
 <h2>Programar Audio</h2>
 
+<div class="programar">
+
 <input type="time" id="horaProgramada">
 
 <select id="audioProgramado"></select>
 
 <button onclick="programarAudio()">Programar</button>
 
-<ul id="listaProgramacion"></ul>
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Hora</th>
+<th>Texto</th>
+<th>Acciones</th>
+</tr>
+
+</thead>
+
+<tbody id="listaProgramacion">
+</tbody>
+
+</table>
 
 </div>
+
 
 
 <!-- CONTROLES -->
@@ -59,15 +96,17 @@
 
 <h2>Funciones Automáticas</h2>
 
-<button onclick="decirHora()">Decir Hora</button>
+<button onclick="decirHora()">🕒 Decir Hora</button>
 
-<button onclick="decirClima()">Decir Clima (demo)</button>
+<button onclick="decirClima()">🌡 Decir Clima</button>
 
 </div>
+
 
 </div>
 
 <script src="app.js"></script>
 
 </body>
+
 </html>
