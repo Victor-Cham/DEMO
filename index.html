@@ -2,111 +2,71 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Radio Demo Automatizada</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <h1>🎙 Sistema Demo Radio</h1>
 
-<div class="contenedor">
+<div class="dashboard">
 
+  <!-- PANEL IZQUIERDO: REGISTROS -->
+  <div class="panel panel-registros">
+    <h2>Registrar Texto</h2>
+    <textarea id="texto" placeholder="Escribe el texto que será convertido a voz"></textarea>
+    <button onclick="guardarRegistro()">Guardar Registro</button>
 
-<!-- REGISTRAR TEXTO -->
-<div class="panel">
+    <h3>Registros Guardados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Texto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="listaRegistros"></tbody>
+    </table>
+  </div>
 
-<h2>Registrar Texto</h2>
+  <!-- PANEL DERECHO: PROGRAMACIÓN -->
+  <div class="panel panel-programacion">
+    <h2>Programar Audio</h2>
+    <div class="programar">
+      <input type="time" id="horaProgramada">
+      <select id="audioProgramado"></select>
+      <button onclick="programarAudio()">Programar</button>
+    </div>
+    <h3>Programación Guardada</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Texto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="listaProgramacion"></tbody>
+    </table>
+  </div>
 
-<textarea id="texto" placeholder="Escribe el texto que será convertido a voz"></textarea>
-
-<button onclick="guardarRegistro()">Guardar Registro</button>
-
-</div>
-
-
-
-<!-- REGISTROS GUARDADOS -->
-<div class="panel">
-
-<h2>Lista de Registros</h2>
-
-<table>
-
-<thead>
-<tr>
-<th>Texto</th>
-<th>Acciones</th>
-</tr>
-</thead>
-
-<tbody id="listaRegistros">
-</tbody>
-
-</table>
-
-</div>
-
-
-
-<!-- PROGRAMACION -->
-<div class="panel">
-
-<h2>Programar Audio</h2>
-
-<div class="programar">
-
-<input type="time" id="horaProgramada">
-
-<select id="audioProgramado"></select>
-
-<button onclick="programarAudio()">Programar</button>
-
-</div>
-
-<table>
-
-<thead>
-
-<tr>
-<th>Hora</th>
-<th>Texto</th>
-<th>Acciones</th>
-</tr>
-
-</thead>
-
-<tbody id="listaProgramacion">
-</tbody>
-
-</table>
-
-</div>
-
-
-
-<!-- CONTROLES -->
-<div class="panel">
-
-<h2>Funciones Automáticas</h2>
-
-<button onclick="decirHora()">🕒 Decir Hora</button>
-
-<button onclick="decirClima()">🌡 Decir Clima</button>
-
-</div>
-
+  <!-- PANEL INFERIOR: CONSOLA -->
+  <div class="panel panel-consola">
+    <h2>Consola Automática</h2>
+    <div class="botones-consola">
+      <button onclick="decirHora()">🕒 Decir Hora</button>
+      <button onclick="decirClima()">🌡 Decir Clima</button>
+    </div>
+    <div id="consola-log">
+      <p>Logs de reproducción aparecerán aquí...</p>
+    </div>
+  </div>
 
 </div>
 
 <script src="app.js"></script>
-
 </body>
-
 </html>
