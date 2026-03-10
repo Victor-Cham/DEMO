@@ -11,10 +11,15 @@ setInterval(verificarProgramacion, 60000);
 
 
 
+//////////////////////////////
+// REGISTROS
+//////////////////////////////
+
+
 // GUARDAR REGISTRO
 function guardarRegistro(){
 
-const texto = document.getElementById("texto").value;
+const texto = document.getElementById("texto").value.trim();
 
 if(texto === ""){
 alert("Escribe un texto");
@@ -49,18 +54,19 @@ function mostrarRegistros(){
 
 let registros = JSON.parse(localStorage.getItem("registros")) || [];
 
-const lista = document.getElementById("listaRegistros");
+const tabla = document.getElementById("listaRegistros");
 
-lista.innerHTML="";
+tabla.innerHTML="";
 
 registros.forEach(r=>{
 
-const li = document.createElement("li");
+const fila = document.createElement("tr");
 
-li.innerHTML = `
-${r.texto}
+fila.innerHTML = `
 
-<div>
+<td>${r.texto}</td>
+
+<td>
 
 <button onclick="reproducirTexto('${r.texto}')">▶</button>
 
@@ -68,10 +74,11 @@ ${r.texto}
 
 <button onclick="eliminarRegistro(${r.id})">❌</button>
 
-</div>
+</td>
+
 `;
 
-lista.appendChild(li);
+tabla.appendChild(fila);
 
 });
 
@@ -79,7 +86,7 @@ lista.appendChild(li);
 
 
 
-// EDITAR
+// EDITAR REGISTRO
 
 function editarRegistro(id){
 
@@ -104,7 +111,7 @@ mostrarOpcionesAudio();
 
 
 
-// ELIMINAR
+// ELIMINAR REGISTRO
 
 function eliminarRegistro(id){
 
@@ -121,7 +128,9 @@ mostrarOpcionesAudio();
 
 
 
+//////////////////////////////
 // TEXTO A VOZ
+//////////////////////////////
 
 function reproducirTexto(texto){
 
@@ -140,7 +149,7 @@ speechSynthesis.speak(speech);
 //////////////////////////////
 
 
-// CARGAR OPCIONES EN SELECT
+// CARGAR SELECT
 
 function mostrarOpcionesAudio(){
 
@@ -175,7 +184,6 @@ const texto = document.getElementById("audioProgramado").value;
 if(!hora){
 
 alert("Selecciona una hora");
-
 return;
 
 }
@@ -206,25 +214,59 @@ function mostrarProgramacion(){
 
 let programacion = JSON.parse(localStorage.getItem("programacion")) || [];
 
-const lista = document.getElementById("listaProgramacion");
+const tabla = document.getElementById("listaProgramacion");
 
-lista.innerHTML="";
+tabla.innerHTML="";
 
 programacion.forEach(p=>{
 
-const li = document.createElement("li");
+const fila = document.createElement("tr");
 
-li.innerHTML=`
+fila.innerHTML=`
 
-${p.hora} - ${p.texto}
+<td>${p.hora}</td>
+
+<td>${p.texto}</td>
+
+<td>
+
+<button onclick="reproducirTexto('${p.texto}')">▶</button>
+
+<button onclick="editarProgramacion(${p.id})">✏</button>
 
 <button onclick="eliminarProgramacion(${p.id})">❌</button>
 
+</td>
+
 `;
 
-lista.appendChild(li);
+tabla.appendChild(fila);
 
 });
+
+}
+
+
+
+// EDITAR PROGRAMACION
+
+function editarProgramacion(id){
+
+let programacion = JSON.parse(localStorage.getItem("programacion")) || [];
+
+const prog = programacion.find(p=>p.id===id);
+
+const nuevaHora = prompt("Editar hora (HH:MM)", prog.hora);
+
+if(nuevaHora){
+
+prog.hora = nuevaHora;
+
+localStorage.setItem("programacion", JSON.stringify(programacion));
+
+mostrarProgramacion();
+
+}
 
 }
 
@@ -246,13 +288,16 @@ mostrarProgramacion();
 
 
 
-// VERIFICAR HORARIO
+//////////////////////////////
+// AUTOMATIZACION
+//////////////////////////////
 
 function verificarProgramacion(){
 
 const ahora = new Date();
 
-const horaActual = ahora.getHours().toString().padStart(2,'0') + ":" +
+const horaActual =
+ahora.getHours().toString().padStart(2,'0') + ":" +
 ahora.getMinutes().toString().padStart(2,'0');
 
 let programacion = JSON.parse(localStorage.getItem("programacion")) || [];
