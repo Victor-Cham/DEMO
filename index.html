@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Radio Demo Automatizada</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<h1>🎙 Sistema Demo Radio</h1>
+
+<div class="contenedor">
+
+<!-- REGISTRO -->
+<div class="panel">
+
+<h2>Registrar Texto</h2>
+
+<textarea id="texto" placeholder="Escribe el texto que será convertido a voz"></textarea>
+
+<button onclick="guardarRegistro()">Guardar Registro</button>
+
+</div>
+
+
+<!-- LISTA -->
+<div class="panel">
+
+<h2>Lista de Registros</h2>
+
+<ul id="listaRegistros"></ul>
+
+</div>
+
+
+<!-- PROGRAMACION -->
+<div class="panel">
+
+<h2>Programar Audio</h2>
+
+<input type="time" id="horaProgramada">
+
+<select id="audioProgramado"></select>
+
+<button onclick="programarAudio()">Programar</button>
+
+<ul id="listaProgramacion"></ul>
+
+</div>
+
+
+<!-- CONTROLES -->
+<div class="panel">
+
+<h2>Funciones Automáticas</h2>
+
+<button onclick="decirHora()">Decir Hora</button>
+
+<button onclick="decirClima()">Decir Clima (demo)</button>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
