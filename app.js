@@ -5,7 +5,7 @@ mostrarRegistros();
 mostrarOpcionesAudio();
 mostrarProgramacion();
 
-setInterval(verificarProgramacion, 60000);
+setInterval(verificarProgramacion, 10000);
 
 });
 
@@ -311,5 +311,57 @@ reproducirTexto(p.texto);
 }
 
 });
+
+}
+
+
+
+//////////////////////////////
+// DECIR HORA
+//////////////////////////////
+
+function decirHora(){
+
+const ahora = new Date();
+
+const horas = ahora.getHours();
+const minutos = ahora.getMinutes();
+
+const texto = `La hora actual es ${horas} horas con ${minutos} minutos`;
+
+reproducirTexto(texto);
+
+}
+
+
+
+//////////////////////////////
+// DECIR CLIMA
+//////////////////////////////
+
+async function decirClima(){
+
+try{
+
+const url="https://api.open-meteo.com/v1/forecast?latitude=-12.05&longitude=-77.04&current_weather=true";
+
+const respuesta = await fetch(url);
+
+const data = await respuesta.json();
+
+const temperatura = data.current_weather.temperature;
+const viento = data.current_weather.windspeed;
+
+const texto = `La temperatura actual es ${temperatura} grados. Velocidad del viento ${viento} kilómetros por hora`;
+
+reproducirTexto(texto);
+
+}catch(error){
+
+console.log(error);
+
+reproducirTexto("No se pudo obtener el clima");
+
+}
 
 }
