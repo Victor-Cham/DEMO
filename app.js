@@ -343,7 +343,7 @@ async function decirClima(){
 
 try{
 
-const url="https://api.open-meteo.com/v1/forecast?latitude=-12.05&longitude=-77.04&current_weather=true";
+const url="https://api.open-meteo.com/v1/forecast?latitude=-11.60&longitude=-76.14&current_weather=true";
 
 const respuesta = await fetch(url);
 
