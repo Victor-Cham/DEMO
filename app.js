@@ -352,7 +352,7 @@ const data = await respuesta.json();
 const temperatura = data.current_weather.temperature;
 const viento = data.current_weather.windspeed;
 
-const texto = `La temperatura actual es ${temperatura} grados. Velocidad del viento ${viento} kilómetros por hora`;
+const texto = `La temperatura actual en MCP es ${temperatura} grados. Velocidad del viento ${viento} kilómetros por hora`;
 
 reproducirTexto(texto);
 
